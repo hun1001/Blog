@@ -1,11 +1,12 @@
 <script lang='ts'>
-    import type { PageData } from "./$types";
-    import { bio,avatar,name } from "$lib/info";
-    import PostList from "$lib/components/PostList.svelte";
-    import ArrowRightIcon from "$lib/components/ArrowRightIcon.svelte";
-    import SocialLinks from "$lib/components/SocialLinks.svelte";
+  import type { PageData } from "./$types";
+  import { bio,avatar,name } from "$lib/info";
+  import PostList from "$lib/components/PostList.svelte";
+  import ArrowRightIcon from "$lib/components/ArrowRightIcon.svelte";
+  import SocialLinks from "$lib/components/SocialLinks.svelte";
+  import { base } from '$app/paths';
 
-    export let data : PageData;
+  export let data : PageData; 
 </script>
 
 <svelte:head>
@@ -35,7 +36,7 @@
       <h2 class="text-sm font-medium sm:text-base text-zinc-500 dark:text-zinc-400">
         Recently Published
       </h2>
-      <a href="/post" class="flex items-center gap-1 text-sm font-medium text-teal-500"
+      <a href="{base}/post" class="flex items-center gap-1 text-sm font-medium text-teal-500"
         >View All <ArrowRightIcon class="w-4 h-4" /></a
       >
     </div>

@@ -1,11 +1,12 @@
 <script>
   import Card from './Card.svelte';
   import ArrowRightIcon from './ArrowRightIcon.svelte';
+  import { base } from '$app/paths';
 
   export let post;
 </script>
 
-<Card href={`/post/${post.slug}`}>
+<Card href={`${base}/post/${post.slug}`}>
   <slot slot="eyebrow" name="eyebrow" />
   <slot slot="title">{post.title}</slot>
   <div slot="description" class="prose dark:prose-invert">
