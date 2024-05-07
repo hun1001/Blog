@@ -1,0 +1,1 @@
+import{s as o,n as e}from"../chunks/scheduler.Ce_0Mfso.js";import{S as n,i as a,h as c,d as r}from"../chunks/index.ZCwXdzjy.js";function d(s){return{c(){this.h()},l(t){c("svelte-j83tw4",document.head).forEach(r),this.h()},h(){document.title="Test Posts"},m:e,p:e,i:e,o:e,d:e}}class l extends n{constructor(t){super(),a(this,t,null,d,o,{})}}export{l as component};
