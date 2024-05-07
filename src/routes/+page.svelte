@@ -10,7 +10,7 @@
 
 <div>
     <h1>SvelteKit Blog</h1>
-    <p class="info">${data.posts.length} posts.</p>
+    <p class="info">{data.posts.length} posts.</p>
 
     {#each data.posts as post}
     <a href={`post/${post.slug}`}>
