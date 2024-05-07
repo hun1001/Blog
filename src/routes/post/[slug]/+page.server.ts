@@ -1,17 +1,18 @@
-// import { posts } from '$lib/post'
-// import { error } from '@sveltejs/kit';
-// import type { PageServerLoad } from './$types';
+import { posts } from '$lib/post'
+import { error } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types';
 
-// export const load : PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params }) => {
+  const { slug } = params
 
-// 	const slug = params.slug;
-// 	const post = posts.find((post) => slug.toString() === post.slug);
+  // get post with metadata
+  const post = posts.find((post) => slug === post.slug)
 
-// 	console.log('slug', post);
+  if (!post) {
+    throw error(404, 'Post not found')
+  }
 
-// 	if (post) {
-// 		return post;
-// 	}
-
-// 	error(404, ' found');
-// };
+  return {
+    post
+  }
+}

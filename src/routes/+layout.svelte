@@ -1,22 +1,24 @@
 <script>
-    import '../app.scss';
-    import Nav from '$lib/components/Nav.svelte';
+    import '../app.css'
+    import '../prism.css'
     import GithubCorner from '$lib/components/GithubCorner.svelte';
+    import { page } from '$app/stores'
+    import Nav from '$lib/components/Nav.svelte';
 </script>
 
 <GithubCorner />
 
-<div class="g-app-wrapper">
-    <Nav/>
-    <slot></slot>
-</div>
+<div class="flex flex-col min-h-screen ">
+    <div class="flex flex-col flex-grow w-full px-4 py-2">
 
-<style lang="scss">
-
-    .g-app-wrapper {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 10px;
-    }
+      <Nav />
+      
+      <main
+        class="flex flex-col flex-grow w-full mx-auto"
+        class:max-w-2xl={!$page.data.layout?.fullWidth}
+      >
+        <slot />
+      </main>
+    </div>
+  </div>
   
-</style>
