@@ -1,16 +1,24 @@
+<script lang='ts'>
+    import type { PageData } from "./$types";
+
+    export let data : PageData;
+</script>
+
 <svelte:head>
     <title>Home</title>
 </svelte:head>
 
 <div>
     <h1>SvelteKit Blog</h1>
-    <p class="info">3 posts.</p>
+    <p class="info">${data.posts.length} posts.</p>
 
-    <a href={`/`}>
-        <h2 class="title">제목</h2>
-        <p>발췌</p>
-      </a>
-  </div>
+    {#each data.posts as post}
+    <a href={`post/${post.slug}`}>
+        <h2 class="title">{post.title}</h2>
+        <p>{post.preview.text}</p>
+    </a>
+    {/each}
+</div>
 
 <style lang="scss">
 
