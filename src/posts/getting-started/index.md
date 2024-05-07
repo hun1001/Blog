@@ -1,76 +1,73 @@
 ---
-title: Getting Started
-date: 2022-12-14
+title: 시작하기
+date: 2024-05-07
+preview: 블로그 docs
 ---
 
-Thanks for checking out my blog template. It's based on the blog I built for my own [website](https://mattjennings.io) and I hope this is a good starting point for you to start yours.
+_시작하기 앞서:_
 
-Let's go over a few quick things:
+- 이 템플릿의 svelte 빌드 버전 `@sveltejs/kit@2.0.0`
 
-- This template was built with `@sveltejs/kit@1.0.0`
+- 이 블로그는 [mattjennings의 sveltekit-blog-template](https://github.com/mattjennings/sveltekit-blog-template)을 원본으로 하고있습니다.
 
-- The theme of this blog is heavily borrowed from Tailwind's ["Spotlight" blog template](https://spotlight.tailwindui.com/). This is _not_ a port of that template, but the styling is pretty much the same.
-
-- You should edit the `src/lib/info.js` file to contain your information. This will properly update the parts of the website that display your name, social links, and SEO (meta tags) for your posts.
-
-Now that that's out of the way, let's learn about how to make posts.
+이제 글을 쓰는 방법을 알아보겠습니다.
 
 ## Creating a Post
 
-All of your posts (including this one) are located in the `posts` folder. They are written in markdown and parsed with mdsvex. If you're unfamiliar with mdsvex, I would recommend [looking at the website](https://mdsvex.com/playground) to see what is all possible out of the box.
+모든 블로그의 포스트는 _(이 글도 포함)_ `src/posts` 폴더에 저장되어 있습니다. markdown 서식을 지원하며 mdsvex를 사용하여 파일을 읽습니다. 만약 mdsvex가 익숙하지 않다면, [웹사이트](https://mdsvex.com/playground)를 확인하는 것을 추천합니다.
 
-You can add a new post by creating either a new `.md` file or a folder with an `index.md` file:
+새로운 .md 파일 또는 index.md를 포함한 폴더를 추가하여 새로운 게시물을 작성할 수 있습니다:
 
 ```
-/posts/my-first-post.md
-/posts/my-first-post/index.md
+src/posts/new-post.md
+src/posts/new-post/index.md
 ```
 
-Make sure your posts have `title` and `date` properties in the front matter:
+파일에 `title`과 `date` 속성이 있는지 확인합니다.:
 
 ```md
 ---
-title: My First Post
-date: 2021-07-09
-preview: This text will be used for the preview instead of the first paragraph
+title: 첫 게시물
+date: 2024-05-07
+preview: 없을 시 첫 단락이 표시됨
 ---
 
-(your content here)
+(게시물 내용)
 ```
 
-The `preview` property is optional, in case you want to customize the preview text. If not provided, the first paragaph of your post will be used instead.
+`preview` 속성은 선택입니다. 제공되지 않으면 게시물의 첫 문단이 표시됩니다.
 
 ## Rendering Posts
 
-Each individual post is rendered at `src/routes/post/[slug]`. You'll notice the route has 3 files:
+작성된 md 파일은 `src/routes/post/[slug]`에서 랜더링합니다.
 
 ```
--| +page.js
--| +page.server.js
+-| +page.ts
+-| +page.server.ts
 -| +page.svelte
 ```
 
-The metadata for the post is loaded in `+page.server.js`. It is then used in `+page.js` to import the post's markdown file. After that, both the post and its metadata are passed into `+page.svelte` to be rendered.
+- `+page.server.ts`: 게시물에 대한 데이터를 가져옵니다
+- `+page.js`: 게시물의 md 파일을 가져옵니다
+- `+page.svelte`: 가져온 데이터들을 이용하여 랜더링합니다
 
-There are some basic meta tags setup for SEO and social media sharing, including a generated open graph image (courtesy of [og-image.vercel.app](https://og-image.vercel.app)).
+생성된 오픈 그래프 이미지([g-image.vercel.app](https://og-image.vercel.app)의 courtity)를 포함하여 SEO 및 소셜 미디어 공유를 위한 몇 가지 기본 메타 태그 설정이 있습니다.
 
 ![open-graph](https://og-image.vercel.app/**Getting%20Started**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg)
 
-Feel free to customize this page as you see fit. I included some nice-to-haves like a table of contents and links to the next and/or previous posts.
-
 ## Getting Posts
 
-Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They are automatically sorted from newest to oldest and contain the metadata for each post.
+게시물은 `import { posts } from '$lib/post'`를 통해 가져올 수 있습니다. 최신순으로 자동 정렬되며 각 게시물에 대한 메타데이터를 저장하고 있습니다.
 
-`$lib/data/posts` should only be imported in `*.server.js` files. It uses some APIs that only work server-side, so it will throw an error if you try to load it on client-side code. (It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways!)
+`$lib/post`는 `*.server.js` 파일에서만 사용해야됩니다. 서버 측에서만 작동하는 API를 사용하므로 클라이언트에서 사용된다면 오류가 발생합니다. (또한 웹사이트의 모든 게시물에 대한 데이터 소스이므로 어쨌든 클라이언트 코드와 함께 번들되는 것을 원하지 않을 것입니다!)
 
-If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/post/[slug]/+page.js`).
+전체 게시물을 랜더링하길 원한다면, 직접적으로 `.md`파일을 읽어드려야 될것입니다. (`src/routes/post/[slug]/+page.js` 참고).
 
 ## Theme
 
-Most of the site is themed using Tailwind's [typography plugin](https://tailwindcss.com/docs/typography-plugin). You can view the configuration in `tailwind.config.cjs`. As mentioned at the beginning of this post, the overall theme is taken from [Tailwind's "Spotlight"](https://spotlight.tailwindui.com/).
+사이트의 대부분은 Tailwind의 [typography plugin](https://tailwindcss.com/docs/typography-plugin)을 사용하여 테마를 지정합니다. tailwind.config.cjs에서 구성을 볼 수 있습니다. 이 게시물은 [Tailwind's "Spotlight"](https://spotlight.tailwindui.com/)를 참고한 <https://sveltekit-blog-template.vercel.app>를 참고하였습니다.
 
-If you wish to change the theme of your code blocks, you can edit the `src/prism.css` file. Prism themes can be [found here](https://github.com/PrismJS/prism-themes/tree/master/themes).
+코드 블록의 테마를 변경하려면 src/prism.css 파일을 편집할 수 있습니다. 프리즘 테마는 [여기](https://github.com/PrismJS/prism-themes/tree/master/themes)에서 찾을 수 있습니다.
 
 ```javascript
 function helloWorld() {
@@ -80,11 +77,11 @@ function helloWorld() {
 
 ## Mdsvex Plugins
 
-I've added some mdsvex plugins to support a few extra things (check out the `mdsvex.config.js` file).
+추가 사항을 지원하기 위해 mdsvex 플러그인을 추가했습니다('mdsvex.config.js' 파일에서 확인 가능).
 
 ### Videos
 
-.mp4 and .webm videos are supported just like images.
+.mp4와 .webm 형식의 비디오는 이미지와 마찬가지로 지원됩니다.
 
 ```md
 ![my video](/videos/my-cool-video.mp4)
@@ -92,7 +89,7 @@ I've added some mdsvex plugins to support a few extra things (check out the `mds
 
 ### Relative URLs for Images and Videos
 
-The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-images) plugin allows loading images or videos with a relative path. This is particularly nice for grouping images with the post under the same folder.
+[mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-images) 플러그인을 사용하면 상대 경로로 이미지 또는 비디오를 로드할 수 있습니다. 이는 동일한 폴더 아래의 게시물로 이미지를 그룹화하는 데 특히 좋습니다.
 
 ```md
 ![penguins](./penguins.mp4)
@@ -102,10 +99,10 @@ The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-ima
 
 ## Deploying
 
-You can deploy this like you would any other SvelteKit project. It uses the auto adapter by default.
+다른 sveltekit 프로젝트처럼 배포 할 수 있습니다. 본 블로그는 static-adapter를 사용하여 배포하였습니다.
 
-[See the SvelteKit docs on adapters](https://kit.svelte.dev/docs/adapters)
+[관련 문서 확인하기](https://kit.svelte.dev/docs/adapters)
 
 ## That's it!
 
-I think I've covered most of the important stuff. If you have any questions, suggestions, or problems feel free to [open an issue](https://github.com/mattjennings/sveltekit-blog-template/issues).
+질문, 제안 또는 문제가 있으면 언제든지 연락바랍니다. [open an issue](https://github.com/mattjennings/sveltekit-blog-template/issues).
