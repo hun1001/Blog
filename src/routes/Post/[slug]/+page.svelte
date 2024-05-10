@@ -2,7 +2,8 @@
   import type { PageData } from './$types';
   import PostDate from '$lib/components/PostDate.svelte';
   import SocialLinks from '$lib/components/SocialLinks.svelte';
-  import { bio, avatar, name } from '$lib/info';
+  import { bio, name } from '$lib/info';
+  import avatar from '$lib/assets/Profile.png';
   import ToC from '$lib/components/ToC.svelte';
 
   export let data : PageData;

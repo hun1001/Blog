@@ -1,6 +1,7 @@
 <script lang='ts'>
   import type { PageData } from "./$types";
-  import { bio,avatar,name } from "$lib/info";
+  import { bio, name } from "$lib/info";
+  import avatar from "$lib/assets/Profile.png";
   import PostList from "$lib/components/PostList.svelte";
   import ArrowRightIcon from "$lib/components/ArrowRightIcon.svelte";
   import SocialLinks from "$lib/components/SocialLinks.svelte";
