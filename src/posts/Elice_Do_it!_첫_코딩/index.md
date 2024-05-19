@@ -71,11 +71,41 @@ for(int i = 0/*반복문 사용할 변수*/; i<10/*조건*/; ++i/*값 변경*/)
 > 실습 예제
 ![for](./for.png)
 
-## for { for { } }
+## for & for
 이중 반복문
 ```Java
 for(int i = 0;i<10;++i)
 {
-    for(int j = 0;j<)
+    for(int j = 0;j<10;++j)
+    {
+
+    }
 }
 ```
+> 실습 예제
+![forfor](./forfor.png)
+
+## for & if
+조건문과 반복문
+```Java
+    for(int i = 0;i<10;++i)
+    {
+        if(i==9)
+        {
+            // 조건에 맞게 실행될 명령
+        }
+    }
+```
+> 실습 예제
+![forif](./forif.png)
+
+## comment
+주석
+```Java
+// 주석 내용
+/*
+    주석 내용
+*/
+```
+> 실습 예제
+![comment](./comment.png)
