@@ -1,6 +1,6 @@
 ---
 title: Do it! 첫 코딩 with Java
-date: 2024-05-8
+date: 2024-05-08
 preview: 엘리스 코딩의 Do it! 첫 코딩 실습 모음
 ---
 ## Variable Declaration
