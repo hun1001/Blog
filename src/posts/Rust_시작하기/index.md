@@ -1,6 +1,7 @@
 ---
 title: Rust 시작하기
 date: 2024-06-25
+preview: Rust
 ---
 
 1. Visual Studio 다운로드 or C++ Build Tool 다운
